@@ -1,8 +1,6 @@
-import { Options } from 'sequelize';
-import dotenv from 'dotenv';
-dotenv.config();
+require('dotenv').config();
 
-const dbConfig: Options = {
+const dbConfig = {
   dialect: 'postgres',
   host: process.env.DB_HOST,
   username: process.env.DB_USER,
@@ -14,4 +12,4 @@ const dbConfig: Options = {
   },
 };
 
-export = dbConfig;
+export default dbConfig;
