@@ -1,3 +1,3 @@
 import { server } from './server';
 
-server.listen(3333, () => console.log('Servidor rodando...'));
+server.listen(3330, () => console.log('Servidor rodando...'));
