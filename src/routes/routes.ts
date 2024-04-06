@@ -1,15 +1,16 @@
-import { Request, Response } from 'express'; // Importando tipos do express para nodejs
-import { Router } from 'express'; // Importando o router do Express
+import { Router } from 'express';
+import AgendamentoController from '../controllers/AgendamentoController';
 
-const router = Router();
+export const routes = Router();
 
-router.get('/', (req: Request, res: Response) => {
-  return res.send('Olá');
+routes.get('/agendamentos', (req, res) => {
+  AgendamentoController.get(req, res);
 });
 
-router.post('/teste', (req: Request, res: Response) => {
-  console.log(req.body);
-  return res.send(req.body);
+routes.post('/agendamentos', (req, res) => {
+  AgendamentoController.store(req, res);
 });
 
-export { router };
+routes.delete('/agendamentos', (req, res) => {
+  AgendamentoController.delete(req, res);
+});
