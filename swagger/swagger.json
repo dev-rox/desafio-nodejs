@@ -1,0 +1,135 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Agendamento",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/agendamentos": {
+      "get": {
+        "summary": "Obter todos os agendamentos",
+        "responses": {
+          "200": {
+            "description": "Uma lista de agendamentos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendamento"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um novo agendamento",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgendamentoCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "O agendamento criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendamento"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um agendamento",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "ID do agendamento"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "O agendamento excluído",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendamento"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Agendamento": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID do agendamento",
+            "readOnly": true,
+            "example": 0
+          },
+          "email": {
+            "type": "string",
+            "description": "Email do cliente",
+            "example": "cliente@example.com"
+          },
+          "servico": {
+            "type": "string",
+            "description": "Serviço agendado",
+            "example": "Corte de cabelo"
+          },
+          "reserva": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data e hora da reserva",
+            "example": "2024-04-06T13:45:45Z"
+          }
+        }
+      },
+      "AgendamentoCreate": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email do cliente",
+            "example": "cliente@example.com"
+          },
+          "servico": {
+            "type": "string",
+            "description": "Serviço agendado",
+            "example": "Corte de cabelo"
+          },
+          "reserva": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data e hora da reserva",
+            "example": "2024-04-06T13:45:45Z"
+          }
+        },
+        "required": ["email", "servico", "reserva"]
+      }
+    }
+  }
+}

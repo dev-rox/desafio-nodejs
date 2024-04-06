@@ -1,5 +1,7 @@
 import express from 'express';
 import { routes } from './routes/routes';
+import SwaggerUi from 'swagger-ui-express';
+import SwaggerDocs from '../swagger/swagger.json';
 
 const server = express();
 
@@ -13,6 +15,7 @@ server.use((req, res, next) => {
   next();
 });
 
+server.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(SwaggerDocs));
 server.use(express.json());
 server.use(routes);
 
